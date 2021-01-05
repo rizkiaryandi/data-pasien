@@ -1,0 +1,7 @@
+{
+  "name": "Data Pasien",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
