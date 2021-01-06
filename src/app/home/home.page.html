@@ -1,20 +1,36 @@
-<ion-header [translucent]="true">
+<ion-header [translucent]="true" class="ion-no-border">
   <ion-toolbar>
     <ion-title>
-      Blank
+      <b><ion-text color="light">RS Duta</ion-text></b>
     </ion-title>
   </ion-toolbar>
 </ion-header>
+<ion-content [fullscreen]="true" color="primary">
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  
+  <div id="fitur">
+    <ion-item lines="none">
+      <ion-searchbar mode="ios" (ionChange)="search($event.target.value)"></ion-searchbar>
+      <ion-select interface="action-sheet" mode="ios" (ionChange)="sort($event.target.value)" placeholder="V">
+        <ion-select-option value="id">ID</ion-select-option>
+        <ion-select-option value="nama">Nama</ion-select-option>
+        <ion-select-option value="alamat">Alamat</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </div>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  <div id="load-page" [ngStyle]="homePage.loadPage">
+    <ion-spinner name="crescent"></ion-spinner>
+  </div>
+  <div id="tabel-data" [ngStyle]="homePage.tabelData">
+    <ion-item *ngFor="let psn of dataPasien" lines="none" button>
+      <ion-label>
+        <h6><b>{{psn.no_rm}}</b></h6>
+        <p><b>Nama: </b>{{psn.nama}}</p>
+        <p><b>Alamat: </b>{{psn.alamat}}</p>
+      </ion-label>
+    </ion-item>
   </div>
 </ion-content>
